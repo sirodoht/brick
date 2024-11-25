@@ -22,7 +22,7 @@ jobs:
       env:
         SSH_KEY: ${{ secrets.SSH_KEY }}
     - name: Install uv
-      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      run: curl -LsSf https://astral.sh/uv/0.5.4/install.sh | sh
     - name: Run ansible
       run: uv run ansible-playbook -v playbook.yaml
       env:
@@ -30,6 +30,4 @@ jobs:
         ANSIBLE_PRIVATE_KEY_FILE: "~/.ssh/brick.key"
         ANSIBLE_HOST: ${{ vars.ANSIBLE_HOST }}
         ANSIBLE_USER: ${{ vars.ANSIBLE_USER }}
-        DEBUG: ${{ vars.DEBUG }}
         DOMAIN: ${{ vars.DOMAIN }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
