@@ -5,7 +5,7 @@ Server configuration files for brick.01z.io
 ## Commands
 
 ```sh
-uv run ansible-playbook playbook.yaml -v
+uv run ansible-playbook -v playbook.yaml
 ```
 
 ## License
