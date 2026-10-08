@@ -42,9 +42,19 @@
         owner: root
         group: root
         mode: '0644'
+        validate: /usr/bin/caddy validate --adapter caddyfile --config %s
+        backup: yes
+      notify: reload caddy
 
-    # caddy service
-    - name: caddy restart
+    # Keep the service running without restarting it on every deployment.
+    - name: caddy service
       ansible.builtin.systemd:
         name: caddy
-        state: restarted
+        enabled: yes
+        state: started
+
+  handlers:
+    - name: reload caddy
+      ansible.builtin.systemd:
+        name: caddy
+        state: reloaded
